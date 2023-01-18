@@ -1,6 +1,6 @@
 <TMPL_INCLUDE NAME="partial/head.tmpl">
 
-    <h2>Comparison: week</h2>
+    <h2>Comparison: year</h2>
     <TMPL_LOOP NAME="CATEGORIES">
       <h3 id="<TMPL_VAR ESCAPE="HTML" NAME="GROUPNAME">"><TMPL_VAR ESCAPE="HTML" NAME="GROUPNAME"></h3>
       <TMPL_LOOP NAME="SERVICES">
@@ -19,7 +19,7 @@
                 <a href="<TMPL_VAR NAME="R_PATH">/<TMPL_VAR NAME="URL">">
                   <img src="<TMPL_VAR NAME="CIMGYEAR">" alt="<TMPL_VAR ESCAPE="HTML" NAME="LABEL">"
                    class="img-responsive i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
-                   <TMPL_IF NAME="IMGYEARWIDTH">width="<TMPL_VAR NAME="IMGYEARWIDTH">" </TMPL_IF> 
+                   <TMPL_IF NAME="IMGYEARWIDTH">width="<TMPL_VAR NAME="IMGYEARWIDTH">" </TMPL_IF>
                    <TMPL_IF NAME="IMGYEARHEIGHT">height="<TMPL_VAR NAME="IMGYEARHEIGHT">"</TMPL_IF>/>
                 </a>
               </TMPL_IF>
@@ -28,5 +28,5 @@
         </div>
       </TMPL_LOOP>
     </TMPL_LOOP>
-	
+
 <TMPL_INCLUDE NAME="partial/footer.tmpl">

@@ -24,21 +24,13 @@ img#zoom_image{
 }
 
 .link-domain {
-	font-size: 1.4em;	
-	color: #660066;
+  font-size: 1.4em;
+  color: #660066;
 }
 .link-host {
-	font-size: 1.1em;
-	color: #800080;
+  font-size: 1.1em;
+  color: #800080;
 }
 ul.groupview, ul.groupview ul {
-	list-style-type: none;
-}
-.munin-icon {
-   background: url(../img/logo-munin.png) left top; 
-   margin-top: -6px;
-   width: 35px; 
-   height: 35px;
-   display: block;
-   float: left;
+  list-style-type: none;
 }

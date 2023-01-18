@@ -2,13 +2,13 @@
 <ol class="breadcrumb">
   <TMPL_LOOP NAME="PATH">
 	<li>
-	<TMPL_IF NAME="PATHNAME"> 
+	<TMPL_IF NAME="PATHNAME">
 	  <TMPL_IF NAME="PATH"><a href="<TMPL_VAR NAME="PATH">"></TMPL_IF>
 		<TMPL_VAR NAME="PATHNAME">
 	  <TMPL_IF NAME="PATH"></a></TMPL_IF>
 	<TMPL_ELSE>
 	  <a href="<TMPL_VAR NAME="R_PATH">">
-		<span class="glyphicon glyphicon-home"></span> Home
+		<span class="glyphicon glyphicon-home"></span> ホーム
 	  </a>
 	</TMPL_IF>
 	</li>
@@ -17,7 +17,7 @@
 <TMPL_ELSE>
 <ol class="breadcrumb">
   <a href="<TMPL_VAR NAME="R_PATH">">
-	<span class="glyphicon glyphicon-home"></span> Home
+	<span class="glyphicon glyphicon-home"></span> ホーム
   </a>
 </ol>
 </TMPL_IF>
