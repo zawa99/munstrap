@@ -13,64 +13,64 @@
       <TMPL_IF NAME="STATE_WARNING">
         <div class="alert service-alert alert-warning"><strong>Note:</strong> This service is in WARNING state because one of the values reported is outside the allowed range.  Please see further down for information about the ranges and the graph for the values.</div>
       </TMPL_IF>
-      
+
       <div class="row">
         <div class="col-md-6">
-          <img data-href="<TMPL_VAR NAME="ZOOMDAY">" src="<TMPL_VAR NAME="IMGDAY">" 
+          <img data-href="<TMPL_VAR NAME="ZOOMDAY">" src="<TMPL_VAR NAME="IMGDAY">"
            alt="daily graph"
            class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
-           <TMPL_IF NAME="IMGDAYWIDTH">width="<TMPL_VAR NAME="IMGDAYWIDTH">" </TMPL_IF> 
+           <TMPL_IF NAME="IMGDAYWIDTH">width="<TMPL_VAR NAME="IMGDAYWIDTH">" </TMPL_IF>
            <TMPL_IF NAME="IMGDAYHEIGHT">height="<TMPL_VAR NAME="IMGDAYHEIGHT">"</TMPL_IF>/>
         </div>
         <div class="col-md-6">
-          <img data-href="<TMPL_VAR NAME="ZOOMWEEK">" src="<TMPL_VAR NAME="IMGWEEK">" 
-           alt="weekly graph" 
+          <img data-href="<TMPL_VAR NAME="ZOOMWEEK">" src="<TMPL_VAR NAME="IMGWEEK">"
+           alt="weekly graph"
            class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
-           <TMPL_IF NAME="IMGWEEKWIDTH">width="<TMPL_VAR NAME="IMGWEEKWIDTH">" </TMPL_IF> 
+           <TMPL_IF NAME="IMGWEEKWIDTH">width="<TMPL_VAR NAME="IMGWEEKWIDTH">" </TMPL_IF>
            <TMPL_IF NAME="IMGWEEKHEIGHT">height="<TMPL_VAR NAME="IMGWEEKHEIGHT">"</TMPL_IF>/>
         </div>
       </div>
       <div class="row">
         <div class="col-md-6">
-          <img data-href="<TMPL_VAR NAME="ZOOMMONTH">" src="<TMPL_VAR NAME="IMGMONTH">" 
-           alt="monthly graph" 
+          <img data-href="<TMPL_VAR NAME="ZOOMMONTH">" src="<TMPL_VAR NAME="IMGMONTH">"
+           alt="monthly graph"
            class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
-           <TMPL_IF NAME="IMGMONTHWIDTH">width="<TMPL_VAR NAME="IMGMONTHWIDTH">" </TMPL_IF> 
+           <TMPL_IF NAME="IMGMONTHWIDTH">width="<TMPL_VAR NAME="IMGMONTHWIDTH">" </TMPL_IF>
            <TMPL_IF NAME="IMGMONTHHEIGHT">height="<TMPL_VAR NAME="IMGMONTHHEIGHT">"</TMPL_IF>/>
         </div>
         <div class="col-md-6">
-          <img data-href="<TMPL_VAR NAME="ZOOMYEAR">" src="<TMPL_VAR NAME="IMGYEAR">" 
-           alt="yearly graph" 
+          <img data-href="<TMPL_VAR NAME="ZOOMYEAR">" src="<TMPL_VAR NAME="IMGYEAR">"
+           alt="yearly graph"
            class="img-responsive img-zoom i<TMPL_IF NAME="STATE_WARNING"> warn</TMPL_IF><TMPL_IF NAME="STATE_CRITICAL"> crit</TMPL_IF>"
-           <TMPL_IF NAME="IMGYEARWIDTH">width="<TMPL_VAR NAME="IMGYEARWIDTH">" </TMPL_IF> 
+           <TMPL_IF NAME="IMGYEARWIDTH">width="<TMPL_VAR NAME="IMGYEARWIDTH">" </TMPL_IF>
            <TMPL_IF NAME="IMGYEARHEIGHT">height="<TMPL_VAR NAME="IMGYEARHEIGHT">"</TMPL_IF>/>
         </div>
       </div>
-      
+
       <!-- .sum graphs.  One of the least used features of munin? -->
       <TMPL_IF NAME="IMGWEEKSUM">
         <div class="row">
           <div class="col-md-6">
-            <img src="<TMPL_VAR NAME="IMGWEEKSUM">" 
-             alt="summed weekly graph" 
-             <TMPL_IF NAME="IMGWEEKSUMWIDTH">width="<TMPL_VAR NAME="IMGWEEKSUMWIDTH">" </TMPL_IF> 
+            <img src="<TMPL_VAR NAME="IMGWEEKSUM">"
+             alt="summed weekly graph"
+             <TMPL_IF NAME="IMGWEEKSUMWIDTH">width="<TMPL_VAR NAME="IMGWEEKSUMWIDTH">" </TMPL_IF>
              <TMPL_IF NAME="IMGWEEKSUMHEIGHT">height="<TMPL_VAR NAME="IMGWEEKSUMHEIGHT">"</TMPL_IF>/>
           </div>
           <div class="col-md-6">
-            <img src="<TMPL_VAR NAME="IMGWEEKSUM">" 
-             alt="summed weekly graph" 
-             <TMPL_IF NAME="IMGWEEKSUMWIDTH">width="<TMPL_VAR NAME="IMGWEEKSUMWIDTH">" </TMPL_IF> 
+            <img src="<TMPL_VAR NAME="IMGWEEKSUM">"
+             alt="summed weekly graph"
+             <TMPL_IF NAME="IMGWEEKSUMWIDTH">width="<TMPL_VAR NAME="IMGWEEKSUMWIDTH">" </TMPL_IF>
              <TMPL_IF NAME="IMGWEEKSUMHEIGHT">height="<TMPL_VAR NAME="IMGWEEKSUMHEIGHT">"</TMPL_IF>/>
           </div>
         </div>
       </TMPL_IF>
-      
+
       <h2><small>Graph information</small></h2>
-      
+
       <TMPL_LOOP NAME="GRAPHINFO">
         <p class="text-muted"><TMPL_VAR NAME="INFO"></p>
       </TMPL_LOOP>
-      
+
       <table class="table table-hover table-condensed">
         <thead>
           <tr>
@@ -103,28 +103,28 @@
         </tbody>
       </table>
     </TMPL_LOOP>
-    
+
     <div id="zoom" class="modal fade">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <div class="modal-body">
-          
+
             <div class="row">
               <div class="col-md-12">
                 <img id="zoom_image" class="img-responsive"/>
               </div>
             </div>
-            
+
             <div class="row">
               <div class="col-md-12">
                 <form class="form-horizontal" role="form" name="zoom_form" id="zoom_form">
                   <div class="form-group">
                     <label for="plugin_name" class="col-sm-2 control-label">Plugin Name</label>
                     <div class="col-sm-10">
-                      <input type="text" class="form-control" name="plugin_name" id="plugin_name">
+                      <input type="text" class="form-control" name="plugin_name" id="plugin_name" disabled>
                     </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" hidden>
                     <label for="start_iso8601" class="col-sm-2 control-label">Time Start/Stop</label>
                     <div class="col-sm-5">
                       <input type="text" class="form-control" name="start_iso8601" id="start_iso8601">
@@ -133,7 +133,7 @@
                       <input type="text" class="form-control" name="stop_iso8601" id="stop_iso8601">
                     </div>
                   </div>
-                  <div class="form-group">
+                  <div class="form-group" hidden>
                     <label for="start_epoch" class="col-sm-2 control-label">Epoch Start/Stop</label>
                     <div class="col-sm-5">
                       <input type="text" class="form-control" name="start_epoch" id="start_epoch">
@@ -143,25 +143,34 @@
                     </div>
                   </div>
                   <div class="form-group">
-                    <label for="lower_limit" class="col-sm-2 control-label">Limit Low/High</label>
+                    <label for="start_picker" class="col-sm-2 control-label">Picker Start/Stop</label>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" name="lower_limit" id="lower_limit">
+                      <input type="text" class="form-control" name="start_picker" id="start_picker">
                     </div>
                     <div class="col-sm-5">
-                      <input type="text" class="form-control" name="upper_limit" id="upper_limit">
+                      <input type="text" class="form-control" name="stop_picker" id="stop_picker">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="lower_limit" class="col-sm-2 control-label">Limit Low/High</label>
+                    <div class="col-sm-5">
+                      <input type="number" class="form-control" name="lower_limit" id="lower_limit">
+                    </div>
+                    <div class="col-sm-5">
+                      <input type="number" class="form-control" name="upper_limit" id="upper_limit">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="size_x" class="col-sm-2 control-label">Width/Height</label>
                     <div class="col-sm-5">
                       <div class="input-group">
-                        <input type="text" class="form-control" name="size_x" id="size_x">
+                        <input type="number" class="form-control" name="size_x" id="size_x" min="100">
                         <span class="input-group-addon">px</span>
                       </div>
                     </div>
                     <div class="col-sm-5">
                       <div class="input-group">
-                        <input type="text" class="form-control" name="size_y" id="size_y">
+                        <input type="number" class="form-control" name="size_y" id="size_y" min="100">
                         <span class="input-group-addon">px</span>
                       </div>
                     </div>
@@ -177,35 +186,49 @@
                 </form>
               </div>
             </div>
-            
-            <div class="row">
-              <div class="col-md-12">
-                <div class="alert alert-info">
-                    <p>Zooming is very easy, it's done in 3 clicks (regular clicks, no drag&amp;drop):</p>
-                    <ol>
-                      <li>Click to define the start of zoom.</li>
-                      <li>Click to define the ending of zoom.</li>
-                      <li>Refresh.</li>
-                    </ol>
-                    <p>You can use the interactive form too.</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
     </div>
-    
+
     <script src="<TMPL_VAR NAME="R_PATH">/static/js/formatdate.js"></script>
     <script src="<TMPL_VAR NAME="R_PATH">/static/js/querystring.js"></script>
     <script src="<TMPL_VAR NAME="R_PATH">/static/js/dynazoom.js"></script>
+    <script src="<TMPL_VAR NAME="R_PATH">/static/js/jquery.datetimepicker.js"></script>
+    <link href="<TMPL_VAR NAME="R_PATH">/static/css/jquery.datetimepicker.css" rel="stylesheet" />
+
+    <script>
+      $.datetimepicker.setLocale('ja');
+      const datetimepickeroptions =
+        {
+          dayOfWeekStart: 1,
+          maxDate: 0,
+          onChangeDateTime: function(ct, $i) {
+            start_manual = new Date($('#start_picker').val())
+            stop_manual = new Date($('#stop_picker').val())
+            if (start_manual > stop_manual) {
+              stop_manual.setHours(stop_manual.getHours() -1)
+              $('#start_picker').val(stop_manual.formatDate("Y/m/d H:i"))
+            }
+
+            epoch = ct.formatDate("U")
+            if ($i[0].id == "start_picker") {
+              $('#start_epoch').val(epoch);
+            } else if ($i[0].id == "stop_picker") {
+              $('#stop_epoch').val(epoch);
+            }
+          }
+        }
+      $('#start_picker').datetimepicker(datetimepickeroptions);
+      $('#stop_picker').datetimepicker(datetimepickeroptions);
+    </script>
     <script type="text/javascript">
       //Zoom modal opening
       $('.img-zoom').click(function(){
         var query = $(this).attr('data-href');
         var form = document.getElementById("zoom_form");
         var image = document.getElementById("zoom_image");
-        
+
         form.onsubmit = function(){//Submit catching
           var qs = new Querystring(query);
           var src = "cgiurl_graph=" + qs.get("cgiurl_graph", "/munin-cgi/munin-cgi-graph")
@@ -222,11 +245,10 @@
           refreshZoom(src, form, image);
           return false;
         };
-        
+
         refreshZoom(query, form, image);
         $('#zoom').modal('show');
       });
-      
+
     </script>
 <TMPL_INCLUDE NAME="partial/footer.tmpl">
-  

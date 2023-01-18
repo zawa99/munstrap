@@ -2,7 +2,7 @@ function refreshZoom(query, form, image, divOverlay) {
   //INIT
   var qs = new Querystring(query);
   init();
-  
+
   var scale = refreshImg();
   var start_epoch = (+qs.get("rst_start_epoch", form.start_epoch.value));
   var stop_epoch = (+qs.get("rst_stop_epoch", form.stop_epoch.value));
@@ -13,6 +13,8 @@ function refreshZoom(query, form, image, divOverlay) {
   form.plugin_name.onblur = refreshImg;
   form.start_iso8601.onblur = majDates;
   form.stop_iso8601.onblur = majDates;
+  form.start_picker.onchange = majDates;
+  form.stop_picker.onchange = majDates;
   form.start_epoch.onblur = refreshImg;
   form.stop_epoch.onblur = refreshImg;
   form.lower_limit.onblur = refreshImg;
@@ -20,7 +22,7 @@ function refreshZoom(query, form, image, divOverlay) {
   form.size_x.onblur = refreshImg;
   form.size_y.onblur = refreshImg;
   form.btnReset.onclick = reset;
-  
+
   // Sets the onClick handler
   image.onclick = click;
   var clickCounter = 0;
@@ -37,23 +39,23 @@ function refreshZoom(query, form, image, divOverlay) {
 
     updateStartStop();
   }
-  
+
   function reset(event){
     init();
-    
+
     //Can be not the initial ones in case of manual refresh
     form.start_epoch.value = start_epoch;
     form.stop_epoch.value = stop_epoch;
     updateStartStop();
-    
+
     //Redraw
     scale = refreshImg();
-    
+
     //Reset gui
     clickCounter = 0;
     initial_left = 0;
     initial_top = 0;
-    
+
     image.onmousemove = undefined;
     form.start_iso8601.disabled = false;
     form.stop_iso8601.disabled = false;
@@ -63,10 +65,10 @@ function refreshZoom(query, form, image, divOverlay) {
 
   function refreshImg(event) {
     image.src = qs.get("cgiurl_graph", "/munin-cgi/munin-cgi-graph") + "/"
-      + form.plugin_name.value 
+      + form.plugin_name.value
       + "-pinpoint=" + parseInt(form.start_epoch.value) + "," + parseInt(form.stop_epoch.value)
       + ".png"
-      + "?" 
+      + "?"
       + "&lower_limit=" + form.lower_limit.value
       + "&upper_limit=" + form.upper_limit.value
       + "&size_x=" + form.size_x.value
@@ -79,6 +81,9 @@ function refreshZoom(query, form, image, divOverlay) {
   function updateStartStop() {
     form.start_iso8601.value = new Date(form.start_epoch.value * 1000).formatDate(Date.DATE_ISO8601);
     form.stop_iso8601.value = new Date(form.stop_epoch.value * 1000).formatDate(Date.DATE_ISO8601);
+
+    form.start_picker.value = new Date(form.start_epoch.value * 1000).formatDate("Y/m/d H:i");
+    form.stop_picker.value = new Date(form.stop_epoch.value * 1000).formatDate("Y/m/d H:i");
   }
 
   function divMouseMove(event) {
@@ -95,11 +100,11 @@ function refreshZoom(query, form, image, divOverlay) {
       delta_x = initial_left - 63; // the Y Axis is 63px from the left border
       size_x = current_width;
     }
-    
+
     // Compute the epochs UNIX (only for horizontal)
     form.start_epoch.value = start_epoch + scale * delta_x;
     form.stop_epoch.value = start_epoch + scale * ( delta_x + size_x );
-    
+
     // update !
     updateStartStop();
   }
@@ -108,21 +113,27 @@ function refreshZoom(query, form, image, divOverlay) {
     var pos = getCoordinatesOnImage(event);
     initial_left = pos[0];
     initial_top = pos[1];
-    
+
     // Fix the handles
     form.start_iso8601.disabled = true;
     form.stop_iso8601.disabled = true;
     form.start_epoch.disabled = true;
     form.stop_epoch.disabled = true;
+    form.start_picker.disabled = true;
+    form.stop_picker.disabled = true;
+
     image.onmousemove = divMouseMove;
   }
 
   function endZoom(event) {
     image.onmousemove = undefined;
+
     form.start_iso8601.disabled = false;
     form.stop_iso8601.disabled = false;
     form.start_epoch.disabled = false;
     form.stop_epoch.disabled = false;
+    form.start_picker.disabled = false;
+    form.stop_picker.disabled = false;
   }
 
   function fillDate(date, default_date) {
@@ -130,22 +141,10 @@ function refreshZoom(query, form, image, divOverlay) {
   }
 
   function majDates(event) {
-    var default_date = "2009-01-01T00:00:00+0100";
-
-    var start_manual = fillDate(form.start_iso8601.value, default_date);
-    var stop_manual = fillDate(form.stop_iso8601.value, default_date);
-    
-    var dateRegex = /(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2}).(\d{4})/;
-    
-    if (dateRegex.test(start_manual)) {
-      var date_parsed = new Date(start_manual.replace(dateRegex, "$2 $3, $1 $4:$5:$6"));
-      form.start_epoch.value = date_parsed.getTime() / 1000;
-    }
-
-    if (dateRegex.test(stop_manual)) {
-      var date_parsed = new Date(stop_manual.replace(dateRegex, "$2 $3, $1 $4:$5:$6"));
-      form.stop_epoch.value = date_parsed.getTime() / 1000;
-    }
+    var start_manual = new Date(form.start_picker.value);
+    var stop_manual = new Date(form.stop_picker.value);
+    form.start_epoch.value = start_manual.getTime() / 1000;
+    form.stop_epoch.value = stop_manual.getTime() / 1000;
 
     //form.submit();
     refreshImg();
@@ -153,15 +152,15 @@ function refreshZoom(query, form, image, divOverlay) {
 
   function click(event) {
     switch ((clickCounter++) % 2) {
-      case 0: 
+      case 0:
         startZoom(event);
         break;
-      case 1: 
+      case 1:
         endZoom(event);
-        break;			
+        break;
     }
   }
-  
+
   //Coordinates on image
   function findPosition(oElement){
     if(typeof( oElement.offsetParent ) != "undefined"){
