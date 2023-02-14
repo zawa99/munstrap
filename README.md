@@ -1,4 +1,8 @@
-Munstrap
+Munstrap for Japanese
+========
+
+Munstrap を一部日本語化、グラフ拡大機能の日時選択に jquery.datetimepicker を使うようにしました。
+
 ========
 
 Alternative Munin 2.x templates based on Twitter Bootstrap 3.   
